@@ -2,4 +2,4 @@
 .env
 
 # Ignore Google Cloud service account credentials
-service-account.json
+service_account.json
