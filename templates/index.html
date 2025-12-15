@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecobank Zimbabwe | Trade Finance Compliance Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-university logo-icon"></i>
+                    <div>
+                        <div class="logo-text">ECOBANK</div>
+                        <div class="logo-subtext">ZIMBABWE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <div class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    <span class="nav-text">Dashboard</span>
+                </div>
+                <div class="nav-item" data-page="agreements">
+                    <i class="fas fa-file-contract nav-icon"></i>
+                    <span class="nav-text">Agreements</span>
+                </div>
+                <div class="nav-item" data-page="calendar">
+                    <i class="fas fa-calendar-check nav-icon"></i>
+                    <span class="nav-text">Compliance Calendar</span>
+                </div>
+                <div class="nav-item" data-page="reminders">
+                    <i class="fas fa-bell nav-icon"></i>
+                    <span class="nav-text">Reminders</span>
+                </div>
+                <div class="nav-item" data-page="analytics">
+                    <i class="fas fa-chart-bar nav-icon"></i>
+                    <span class="nav-text">Analytics</span>
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <i class="fas fa-cog nav-icon"></i>
+                    <span class="nav-text">Settings</span>
+                </div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">KM</div>
+                <div class="user-info">
+                    <div class="user-name">Kudzai Matanyaire</div>
+                    <div class="user-role">Assistant Manager - Trade Operations</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">
+                    <h1>Trade Finance Compliance Dashboard</h1>
+                    <p>AI-Powered Approval Conditions Tracking System</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="fas fa-search" style="color: var(--dark-gray);"></i>
+                        <input type="text" id="searchInput" placeholder="Search agreements, clients, references...">
+                    </div>
+                    
+                    <button class="btn btn-primary" id="newAgreementBtn">
+                        <i class="fas fa-plus"></i>
+                        <span>New Agreement</span>
+                    </button>
+                    
+                    <button class="btn btn-secondary" id="exportReportBtn">
+                        <i class="fas fa-download"></i>
+                        <span>Export Report</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card stat-1">
+                    <div class="stat-info">
+                        <h3 id="activeAgreementsCount">147</h3>
+                        <p>Active Agreements</p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-2">
+                    <div class="stat-info">
+                        <h3 id="pendingActionsCount">23</h3>
+                        <p>Pending Actions</p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-3">
+                    <div class="stat-info">
+                        <h3 id="complianceRate">94%</h3>
+                        <p>Compliance Rate</p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-4">
+                    <div class="stat-info">
+                        <h3 id="overdueReportsCount">6</h3>
+                        <p>Overdue Reports</p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Grid -->
+            <div class="content-grid">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Recent Agreements Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Recent Supplier Credit Agreements</div>
+                            <a href="#" class="card-link" id="viewAllAgreements">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table id="agreementsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Reference</th>
+                                        <th>Importer</th>
+                                        <th>Amount</th>
+                                        <th>Expiry Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>IMP/ECOCZWHX/2025/012750/1</td>
+                                        <td>Cangrow Trading Pvt Ltd</td>
+                                        <td>$30,000,000</td>
+                                        <td>31 Dec 2025</td>
+                                        <td><span class="status-badge status-approved">Approved</span></td>
+                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012750/1">Track</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IMP/ECOCZWHX/2025/012655/2</td>
+                                        <td>AgriProduce Zimbabwe</td>
+                                        <td>$12,500,000</td>
+                                        <td>15 Jan 2026</td>
+                                        <td><span class="status-badge status-pending">Pending Review</span></td>
+                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012655/2">Review</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IMP/ECOCZWHX/2025/012580/3</td>
+                                        <td>Harare Milling Co.</td>
+                                        <td>$8,200,000</td>
+                                        <td>28 Feb 2026</td>
+                                        <td><span class="status-badge status-approved">Approved</span></td>
+                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012580/3">Track</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IMP/ECOCZWHX/2025/012495/4</td>
+                                        <td>National Commodities Ltd</td>
+                                        <td>$45,000,000</td>
+                                        <td>30 Nov 2025</td>
+                                        <td><span class="status-badge status-overdue">Report Overdue</span></td>
+                                        <td><button class="btn btn-primary action-btn" data-ref="IMP/ECOCZWHX/2025/012495/4">Escalate</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>IMP/ECOCZWHX/2025/012410/5</td>
+                                        <td>ZimFarmers Union</td>
+                                        <td>$5,750,000</td>
+                                        <td>10 Mar 2026</td>
+                                        <td><span class="status-badge status-draft">Draft</span></td>
+                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012410/5">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Compliance Progress -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Compliance Progress</div>
+                            <a href="#" class="card-link" id="complianceDetails">Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        
+                        <div class="compliance-progress">
+                            <div class="progress-item progress-1">
+                                <div class="progress-header">
+                                    <div class="progress-title">Quarterly Reports Submitted</div>
+                                    <div class="progress-percent">92%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item progress-2">
+                                <div class="progress-header">
+                                    <div class="progress-title">On-time Registration</div>
+                                    <div class="progress-percent">78%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item progress-3">
+                                <div class="progress-header">
+                                    <div class="progress-title">FXD3 Compliance</div>
+                                    <div class="progress-percent">85%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="right-column">
+                    <!-- Recent Activity -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Recent Activity</div>
+                            <a href="#" class="card-link" id="viewAllActivity">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        
+                        <ul class="activity-list" id="activityList">
+                            <li class="activity-item">
+                                <div class="activity-icon activity-icon-1">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Agreement Approved</h4>
+                                    <p>IMP/ECOCZWHX/2025/012750/1 for Cangrow Trading approved</p>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon activity-icon-2">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Reminder Sent</h4>
+                                    <p>Quarterly report due for AgriProduce Zimbabwe in 7 days</p>
+                                    <div class="activity-time">5 hours ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon activity-icon-3">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Escalation Triggered</h4>
+                                    <p>National Commodities Ltd report overdue by 14 days</p>
+                                    <div class="activity-time">1 day ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon activity-icon-1">
+                                    <i class="fas fa-file-upload"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Document Processed</h4>
+                                    <p>Harare Milling Co. agreement processed via Document AI</p>
+                                    <div class="activity-time">2 days ago</div>
+                                </div>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <div class="activity-icon activity-icon-2">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>User Action</h4>
+                                    <p>Gallant Nyaumwe reviewed and signed off on 3 agreements</p>
+                                    <div class="activity-time">3 days ago</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Upcoming Deadlines -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Upcoming Deadlines</div>
+                            <a href="#" class="card-link" id="viewCalendar">Calendar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        
+                        <div class="upcoming-list" id="upcomingList">
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: var(--warning);">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Quarterly Report Due</h4>
+                                    <p>Cangrow Trading Pvt Ltd - IMP/ECOCZWHX/2025/012750/1</p>
+                                    <div class="activity-time">Due: 30 Sep 2025 (in 14 days)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: var(--info);">
+                                    <i class="fas fa-file-signature"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Agreement Renewal</h4>
+                                    <p>AgriProduce Zimbabwe - IMP/ECOCZWHX/2025/012655/2</p>
+                                    <div class="activity-time">Due: 15 Jan 2026 (in 121 days)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: var(--ecobank-green);">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Payment Submission</h4>
+                                    <p>Harare Milling Co. - IMP/ECOCZWHX/2025/012580/3</p>
+                                    <div class="activity-time">Due: 10 Oct 2025 (in 24 days)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p>Ecobank Zimbabwe Trade Finance Compliance System | AI-Powered Automated Approval Conditions Reminder System | Version 1.0</p>
+                <p>© 2025 Ecobank Zimbabwe Limited. All rights reserved. | Powered by Google Cloud Platform</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Action completed successfully!</span>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
