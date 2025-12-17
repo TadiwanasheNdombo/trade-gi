@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Trade Agreements | Ecobank Zimbabwe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .agreements-container {
+            max-width: 1100px;
+            margin: 48px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .agreements-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .agreements-header h1 {
+            color: var(--success);
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        .agreements-header .btn {
+            font-size: 1rem;
+        }
+        .agreements-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+        }
+        .agreements-table th, .agreements-table td {
+            padding: 1rem 1.2rem;
+            text-align: left;
+        }
+        .agreements-table th {
+            background: #f8fafb;
+            color: #28a745;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .agreements-table tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+        .agreements-table tr:last-child {
+            border-bottom: none;
+        }
+        .agreements-table td {
+            font-size: 1rem;
+            color: #333;
+        }
+        .agreements-table tr:hover {
+            background: #f4f7f6;
+        }
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status-approved {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        .status-pending {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+        .status-overdue {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        .action-btn {
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .action-btn:hover {
+            background: #218838;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #f8fafb;
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            width: 320px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            margin-left: 10px;
+            font-size: 1rem;
+            background: transparent;
+        }
+        @media (max-width: 900px) {
+            .agreements-container { padding: 1rem; }
+            .agreements-header { flex-direction: column; gap: 1rem; }
+            .search-bar { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar Navigation (reuse dashboard style) -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-university logo-icon"></i>
+                <div>
+                    <div class="logo-text">ECOBANK</div>
+                    <div class="logo-subtext">ZIMBABWE</div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <div class="nav-item" onclick="window.location.href='/'">
+                <i class="fas fa-tachometer-alt nav-icon"></i>
+                <span class="nav-text">Dashboard</span>
+            </div>
+            <div class="nav-item active" style="color:white; cursor:pointer;">
+                <i class="fas fa-file-contract nav-icon"></i>
+                <span class="nav-text">Agreements</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='/calendar'">
+                <i class="fas fa-calendar-check nav-icon"></i>
+                <span class="nav-text">Compliance Calendar</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='/reminders'">
+                <i class="fas fa-bell nav-icon"></i>
+                <span class="nav-text">Reminders</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='/analytics'">
+                <i class="fas fa-chart-bar nav-icon"></i>
+                <span class="nav-text">Analytics</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='/settings'">
+                <i class="fas fa-cog nav-icon"></i>
+                <span class="nav-text">Settings</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='/settings'">
+                <i class="fas fa-cog nav-icon"></i>
+                <span class="nav-text">Settings</span>
+            </div>
+        </div>
+        <div class="user-profile">
+            <div class="user-avatar">KM</div>
+            <div class="user-info">
+                <div class="user-name">Kudzai Matanyaire</div>
+                <div class="user-role">Assistant Manager - Trade Operations</div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Agreements Content -->
+    <div class="main-content">
+        <div class="agreements-container">
+            <div class="agreements-header">
+                <h1><i class="fas fa-file-contract"></i> All Trade Agreements</h1>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search by reference, importer, or status...">
+                </div>
+                <a href="/upload" class="btn btn-primary"><i class="fas fa-plus"></i> New Agreement</a>
+            </div>
+            <table class="agreements-table">
+                <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Importer</th>
+                        <th>Amount</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IMP/ECOCZWHX/2025/012750/1</td>
+                        <td>Cangrow Trading Pvt Ltd</td>
+                        <td>$30,000,000</td>
+                        <td>31 Dec 2025</td>
+                        <td><span class="status-badge status-approved">Approved</span></td>
+                        <td><button class="action-btn">Track</button></td>
+                    </tr>
+                    <tr>
+                        <td>IMP/ECOCZWHX/2025/012655/2</td>
+                        <td>AgriProduce Zimbabwe</td>
+                        <td>$12,500,000</td>
+                        <td>15 Jan 2026</td>
+                        <td><span class="status-badge status-pending">Pending Review</span></td>
+                        <td><button class="action-btn">Review</button></td>
+                    </tr>
+                    <tr>
+                        <td>IMP/ECOCZWHX/2025/012580/3</td>
+                        <td>Harare Milling Co.</td>
+                        <td>$8,200,000</td>
+                        <td>28 Feb 2026</td>
+                        <td><span class="status-badge status-approved">Approved</span></td>
+                        <td><button class="action-btn">Track</button></td>
+                    </tr>
+                    <tr>
+                        <td>IMP/ECOCZWHX/2025/012495/4</td>
+                        <td>National Commodities Ltd</td>
+                        <td>$45,000,000</td>
+                        <td>30 Nov 2025</td>
+                        <td><span class="status-badge status-overdue">Report Overdue</span></td>
+                        <td><button class="action-btn">Escalate</button></td>
+                    </tr>
+                    <tr>
+                        <td>IMP/ECOCZWHX/2025/012410/5</td>
+                        <td>ZimFarmers Union</td>
+                        <td>$5,750,000</td>
+                        <td>10 Mar 2026</td>
+                        <td><span class="status-badge status-pending">Draft</span></td>
+                        <td><button class="action-btn">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -27,7 +27,7 @@
                     <i class="fas fa-tachometer-alt nav-icon"></i>
                     <span class="nav-text">Dashboard</span>
                 </div>
-                <div class="nav-item" data-page="agreements">
+                <div class="nav-item" onclick="window.location.href='/agreements'" style="color:white; cursor:pointer;">
                     <i class="fas fa-file-contract nav-icon"></i>
                     <span class="nav-text">Agreements</span>
                 </div>
@@ -39,7 +39,7 @@
                     <i class="fas fa-bell nav-icon"></i>
                     <span class="nav-text">Reminders</span>
                 </div>
-                <div class="nav-item" data-page="analytics">
+                <div class="nav-item" onclick="window.location.href='/analytics'">
                     <i class="fas fa-chart-bar nav-icon"></i>
                     <span class="nav-text">Analytics</span>
                 </div>
@@ -74,9 +74,10 @@
                     </div>
                     
                     <button class="btn btn-primary" id="newAgreementBtn">
-                        <i class="fas fa-plus"></i>
-                        <span>New Agreement</span>
-                    </button>
+                        <a href="/upload" class="btn btn-primary" id="newAgreementBtn" style="text-decoration:none;display:inline-block;">
+                            <i class="fas fa-plus"></i>
+                            <span>New Agreement</span>
+                        </a>
                     
                     <button class="btn btn-secondary" id="exportReportBtn">
                         <i class="fas fa-download"></i>
@@ -152,46 +153,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for rec in records %}
                                     <tr>
-                                        <td>IMP/ECOCZWHX/2025/012750/1</td>
-                                        <td>Cangrow Trading Pvt Ltd</td>
-                                        <td>$30,000,000</td>
-                                        <td>31 Dec 2025</td>
-                                        <td><span class="status-badge status-approved">Approved</span></td>
-                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012750/1">Track</button></td>
+                                        <td>{{ rec.CFAAM_Ref }}</td>
+                                        <td>{{ rec.Importer_Name }}</td>
+                                        <td>{{ rec.Currency_and_Amount }}</td>
+                                        <td>{{ rec.Expiry_Date }}</td>
+                                        <td>
+                                            {% if rec.status == 'Approved' %}
+                                                <span class="status-badge status-approved">Approved</span>
+                                            {% elif rec.status == 'Pending Review' %}
+                                                <span class="status-badge status-pending">Pending Review</span>
+                                            {% elif rec.status == 'Report Overdue' %}
+                                                <span class="status-badge status-overdue">Report Overdue</span>
+                                            {% elif rec.status == 'Draft' %}
+                                                <span class="status-badge status-draft">Draft</span>
+                                            {% else %}
+                                                <span class="status-badge">{{ rec.status or 'Unknown' }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if rec.status == 'Pending Review' %}
+                                                <button class="btn btn-secondary action-btn" data-ref="{{ rec.CFAAM_Ref }}">Review</button>
+                                            {% elif rec.status == 'Report Overdue' %}
+                                                <button class="btn btn-primary action-btn" data-ref="{{ rec.CFAAM_Ref }}">Escalate</button>
+                                            {% elif rec.status == 'Draft' %}
+                                                <button class="btn btn-secondary action-btn" data-ref="{{ rec.CFAAM_Ref }}">Edit</button>
+                                            {% else %}
+                                                <button class="btn btn-secondary action-btn" data-ref="{{ rec.CFAAM_Ref }}">Track</button>
+                                            {% endif %}
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>IMP/ECOCZWHX/2025/012655/2</td>
-                                        <td>AgriProduce Zimbabwe</td>
-                                        <td>$12,500,000</td>
-                                        <td>15 Jan 2026</td>
-                                        <td><span class="status-badge status-pending">Pending Review</span></td>
-                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012655/2">Review</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>IMP/ECOCZWHX/2025/012580/3</td>
-                                        <td>Harare Milling Co.</td>
-                                        <td>$8,200,000</td>
-                                        <td>28 Feb 2026</td>
-                                        <td><span class="status-badge status-approved">Approved</span></td>
-                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012580/3">Track</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>IMP/ECOCZWHX/2025/012495/4</td>
-                                        <td>National Commodities Ltd</td>
-                                        <td>$45,000,000</td>
-                                        <td>30 Nov 2025</td>
-                                        <td><span class="status-badge status-overdue">Report Overdue</span></td>
-                                        <td><button class="btn btn-primary action-btn" data-ref="IMP/ECOCZWHX/2025/012495/4">Escalate</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>IMP/ECOCZWHX/2025/012410/5</td>
-                                        <td>ZimFarmers Union</td>
-                                        <td>$5,750,000</td>
-                                        <td>10 Mar 2026</td>
-                                        <td><span class="status-badge status-draft">Draft</span></td>
-                                        <td><button class="btn btn-secondary action-btn" data-ref="IMP/ECOCZWHX/2025/012410/5">Edit</button></td>
-                                    </tr>
+                                    {% else %}
+                                    <tr><td colspan="6" style="text-align:center;">No agreements found.</td></tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -366,6 +361,6 @@
         </div>
     </div>
     
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>

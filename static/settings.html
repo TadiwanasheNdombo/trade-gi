@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Ecobank Zimbabwe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-university logo-icon"></i>
+                    <div>
+                        <div class="logo-text">ECOBANK</div>
+                        <div class="logo-subtext">ZIMBABWE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-item" onclick="window.location.href='/'">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                    <span class="nav-text">Dashboard</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='/agreements'">
+                    <i class="fas fa-file-contract nav-icon"></i>
+                    <span class="nav-text">Agreements</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='/calendar'">
+                    <i class="fas fa-calendar-check nav-icon"></i>
+                    <span class="nav-text">Compliance Calendar</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='/reminders'">
+                    <i class="fas fa-bell nav-icon"></i>
+                    <span class="nav-text">Reminders</span>
+                </div>
+                <div class="nav-item" onclick="window.location.href='/analytics'">
+                    <i class="fas fa-chart-bar nav-icon"></i>
+                    <span class="nav-text">Analytics</span>
+                </div>
+                <div class="nav-item active" style="color:white; cursor:pointer;">
+                    <i class="fas fa-cog nav-icon"></i>
+                    <span class="nav-text">Settings</span>
+                </div>
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar">KM</div>
+                <div class="user-info">
+                    <div class="user-name">Kudzai Matanyaire</div>
+                    <div class="user-role">Assistant Manager - Trade Operations</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="settings-container">
+                <!-- Header -->
+                <header class="settings-header">
+                    <h1><i class="fas fa-cogs"></i> Application Settings</h1>
+                </header>
+
+                <!-- Settings Grid -->
+                <div class="settings-grid">
+                    <!-- Appearance Card -->
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <i class="fas fa-palette"></i>
+                            <h2>Appearance</h2>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Dark Theme</h3>
+                                <p>Switch between light and dark mode</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="darkThemeToggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Theme Color</h3>
+                                <p>Choose primary color scheme</p>
+                            </div>
+                            <input type="color" class="color-picker" id="themeColor" value="#006B3F">
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Font Size</h3>
+                                <p>Adjust interface text size</p>
+                            </div>
+                            <div class="range-container">
+                                <input type="range" min="12" max="18" value="14" class="range-slider" id="fontSize">
+                                <span class="range-value" id="fontSizeValue">14px</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- General Settings Card -->
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <i class="fas fa-sliders-h"></i>
+                            <h2>General Settings</h2>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Auto-save</h3>
+                                <p>Automatically save changes</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="autoSave" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Language</h3>
+                                <p>Select application language</p>
+                            </div>
+                            <select id="language">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Default Export Format</h3>
+                                <p>Choose format for reports</p>
+                            </div>
+                            <select id="exportFormat">
+                                <option value="pdf">PDF</option>
+                                <option value="csv">CSV</option>
+                                <option value="xlsx">Excel (XLSX)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Security Card -->
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h2>Privacy & Security</h2>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Two-Factor Auth</h3>
+                                <p>Add extra security to your account</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="twoFactor">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Data Collection</h3>
+                                <p>Allow anonymous usage data</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="dataCollection" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Auto-logout</h3>
+                                <p>Logout after inactivity (minutes)</p>
+                            </div>
+                            <div class="range-container">
+                                <input type="range" min="5" max="60" value="30" class="range-slider" id="autoLogout">
+                                <span class="range-value" id="logoutValue">30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Card -->
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <i class="fas fa-bell"></i>
+                            <h2>Notifications</h2>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Email Notifications</h3>
+                                <p>Receive email updates for alerts</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Push Notifications</h3>
+                                <p>Enable browser notifications</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="pushNotifications">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>Notification Sound</h3>
+                                <p>Play sound for new alerts</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="soundNotifications" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" id="resetBtn">
+                        <i class="fas fa-undo"></i> Reset to Defaults
+                    </button>
+                    <button class="btn btn-primary" id="saveBtn">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DOM Element Selectors ---
+            const settingsToSave = [
+                'darkThemeToggle', 'themeColor', 'fontSize', 'autoSave', 'language', 
+                'exportFormat', 'twoFactor', 'dataCollection', 'autoLogout', 
+                'emailNotifications', 'pushNotifications', 'soundNotifications'
+            ];
+            const elements = {};
+            settingsToSave.forEach(id => elements[id] = document.getElementById(id));
+            
+            const fontSizeValue = document.getElementById('fontSizeValue');
+            const logoutValue = document.getElementById('logoutValue');
+
+            // --- Event Listeners ---
+            elements.darkThemeToggle.addEventListener('change', toggleTheme);
+            elements.themeColor.addEventListener('input', (e) => applyThemeColor(e.target.value));
+            elements.fontSize.addEventListener('input', (e) => {
+                const size = e.target.value;
+                fontSizeValue.textContent = size + 'px';
+                document.body.style.fontSize = size + 'px';
+            });
+            elements.autoLogout.addEventListener('input', (e) => logoutValue.textContent = e.target.value);
+
+            document.getElementById('saveBtn').addEventListener('click', saveAllSettings);
+            document.getElementById('resetBtn').addEventListener('click', resetSettings);
+
+            // --- Functions ---
+            function applyThemeColor(color) {
+                document.documentElement.style.setProperty('--primary-color', color);
+                document.documentElement.style.setProperty('--ecobank-green', color); // Also update the main theme color
+            }
+
+            function toggleTheme() {
+                const isDark = elements.darkThemeToggle.checked;
+                document.body.classList.toggle('dark-theme', isDark);
+            }
+
+            function saveAllSettings() {
+                const settings = {};
+                settingsToSave.forEach(id => {
+                    const el = elements[id];
+                    settings[id] = el.type === 'checkbox' ? el.checked : el.value;
+                });
+                localStorage.setItem('appSettings', JSON.stringify(settings));
+                // You can add a notification toast here
+                alert('Settings Saved!');
+            }
+
+            function loadSettings() {
+                const saved = localStorage.getItem('appSettings');
+                if (!saved) return;
+
+                const settings = JSON.parse(saved);
+                settingsToSave.forEach(id => {
+                    if (settings[id] !== undefined) {
+                        const el = elements[id];
+                        if (el.type === 'checkbox') {
+                            el.checked = settings[id];
+                        } else {
+                            el.value = settings[id];
+                        }
+                    }
+                });
+
+                // Apply visual settings
+                toggleTheme();
+                applyThemeColor(elements.themeColor.value);
+                fontSizeValue.textContent = elements.fontSize.value + 'px';
+                document.body.style.fontSize = elements.fontSize.value + 'px';
+                logoutValue.textContent = elements.autoLogout.value;
+            }
+
+            function resetSettings() {
+                if (confirm('Are you sure you want to reset all settings to defaults?')) {
+                    localStorage.removeItem('appSettings');
+                    location.reload();
+                }
+            }
+
+            // --- Initial Load ---
+            loadSettings();
+        });
+    </script>
+</body>
+</html>

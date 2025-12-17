@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload New Trade Agreement | Ecobank Zimbabwe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="upload-container">
+    <!-- Header -->
+    <div class="upload-header">
+        <h1><i class="fas fa-file-upload"></i> Upload New Trade Agreement</h1>
+        <p class="subtitle">AI-powered document processing for compliance tracking</p>
+    </div>
+
+    <!-- Upload Process Steps -->
+    <div class="upload-steps">
+        <div class="step active">
+            <div class="step-number">1</div>
+            <div class="step-info">
+                <h4>Upload Document</h4>
+                <p>Select PDF approval letter</p>
+            </div>
+        </div>
+        <div class="step green">
+            <div class="step-number">2</div>
+            <div class="step-info">
+                <h4>AI Processing</h4>
+                <p>Document AI extraction</p>
+            </div>
+        </div>
+        <div class="step green">
+            <div class="step-number">3</div>
+            <div class="step-info">
+                <h4>Review & Confirm</h4>
+                <p>Validate extracted data</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Area -->
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <div class="upload-area" id="dropZone">
+            <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <h3>Drag & Drop PDF Here</h3>
+            <p class="upload-hint">Or click to browse files</p>
+            <input type="file" id="fileInput" name="pdf" accept="application/pdf" hidden required>
+            <div class="file-requirements">
+                <p><i class="fas fa-check-circle"></i> Supported: PDF files only</p>
+                <p><i class="fas fa-check-circle"></i> Max size: 10MB per file</p>
+                <p><i class="fas fa-check-circle"></i> Required: RBZ approval letters</p>
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="upload-actions">
+            <button class="btn btn-secondary" id="cancelBtn" type="button" onclick="window.location.href='/'">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+            <button class="btn btn-primary" id="uploadBtn" type="submit" disabled>
+                <i class="fas fa-upload"></i> Process with AI
+            </button>
+        </div>
+    </form>
+
+    <!-- Recent Uploads (If any) -->
+    <div class="recent-uploads">
+        <h4><i class="fas fa-history"></i> Recent Uploads</h4>
+        <div class="recent-list">
+            <div class="recent-item">
+                <i class="fas fa-file-pdf"></i>
+                <div class="recent-info">
+                    <span class="filename">Cangrow_Trading_Approval.pdf</span>
+                    <span class="status approved">Processed</span>
+                </div>
+                <span class="time">2 hours ago</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Status (Initially Hidden) -->
+    <div class="processing-status" id="processingStatus" style="display: none;">
+        <div class="processing-header">
+            <i class="fas fa-spinner fa-spin"></i>
+            <h3>Processing Document...</h3>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="processing-steps">
+            <div class="processing-step">
+                <i class="fas fa-check-circle completed"></i>
+                <span>Document uploaded</span>
+            </div>
+            <div class="processing-step">
+                <i class="fas fa-spinner fa-spin processing"></i>
+                <span>Extracting with Document AI</span>
+            </div>
+            <div class="processing-step">
+                <i class="far fa-circle pending"></i>
+                <span>Validating compliance conditions</span>
+            </div>
+            <div class="processing-step">
+                <i class="far fa-circle pending"></i>
+                <span>Setting up reminder schedule</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/upload.js"></script>
+</body>
+</html>
