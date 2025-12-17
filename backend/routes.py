@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 import sys
 import traceback
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore as fs
 import google.genai
@@ -11,15 +12,19 @@ from backend.models import TradeApproval
 main = Blueprint('main', __name__)
 
 # Firebase/Gemini setup (reuse from main.py or refactor to config)
-SERVICE_ACCOUNT_PATH = 'service_account.json'
-if not firebase_admin._apps:
-    cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
-    firebase_admin.initialize_app(cred)
+# Securely load credentials from environment variable
+try:
+    gcp_service_account_str = os.environ.get('GCP_SERVICE_ACCOUNT')
+    if not gcp_service_account_str:
+        raise ValueError("GCP_SERVICE_ACCOUNT environment variable not set.")
+    
+    gcp_service_account_info = json.loads(gcp_service_account_str)
+    cred = credentials.Certificate(gcp_service_account_info)
+except Exception as e:
+    print(f"CRITICAL: Failed to initialize Firebase Admin SDK: {e}", file=sys.stderr)
+    # In a real app, you might want to exit or handle this more gracefully
+    cred = None # Ensure cred is defined
 
-main = Blueprint('main', __name__)
-
-# Firebase/Gemini setup (reuse from main.py or refactor to config)
-SERVICE_ACCOUNT_PATH = 'service_account.json'
 if not firebase_admin._apps:
     cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
     firebase_admin.initialize_app(cred)

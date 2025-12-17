@@ -1,5 +1,5 @@
-# Ignore environment files with secrets
-.env
-
-# Ignore Google Cloud service account credentials
+# Secrets
 service_account.json
+
+# Python
+__pycache__/
