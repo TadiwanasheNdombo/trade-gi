@@ -258,8 +258,25 @@
             const fontSizeValue = document.getElementById('fontSizeValue');
             const logoutValue = document.getElementById('logoutValue');
 
+            // --- Theme Sync with Global App ---
+            function applyThemeFromStorage() {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.body.classList.toggle('dark-theme', savedTheme === 'dark');
+                document.documentElement.classList.toggle('dark-theme', savedTheme === 'dark');
+                if (elements.darkThemeToggle) {
+                    elements.darkThemeToggle.checked = (savedTheme === 'dark');
+                }
+            }
+            function setTheme(isDark) {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                document.body.classList.toggle('dark-theme', isDark);
+                document.documentElement.classList.toggle('dark-theme', isDark);
+            }
+
             // --- Event Listeners ---
-            elements.darkThemeToggle.addEventListener('change', toggleTheme);
+            elements.darkThemeToggle.addEventListener('change', function() {
+                setTheme(elements.darkThemeToggle.checked);
+            });
             elements.themeColor.addEventListener('input', (e) => applyThemeColor(e.target.value));
             elements.fontSize.addEventListener('input', (e) => {
                 const size = e.target.value;
@@ -277,11 +294,6 @@
                 document.documentElement.style.setProperty('--ecobank-green', color); // Also update the main theme color
             }
 
-            function toggleTheme() {
-                const isDark = elements.darkThemeToggle.checked;
-                document.body.classList.toggle('dark-theme', isDark);
-            }
-
             function saveAllSettings() {
                 const settings = {};
                 settingsToSave.forEach(id => {
@@ -295,22 +307,21 @@
 
             function loadSettings() {
                 const saved = localStorage.getItem('appSettings');
-                if (!saved) return;
-
-                const settings = JSON.parse(saved);
-                settingsToSave.forEach(id => {
-                    if (settings[id] !== undefined) {
-                        const el = elements[id];
-                        if (el.type === 'checkbox') {
-                            el.checked = settings[id];
-                        } else {
-                            el.value = settings[id];
+                if (saved) {
+                    const settings = JSON.parse(saved);
+                    settingsToSave.forEach(id => {
+                        if (settings[id] !== undefined) {
+                            const el = elements[id];
+                            if (el.type === 'checkbox') {
+                                el.checked = settings[id];
+                            } else {
+                                el.value = settings[id];
+                            }
                         }
-                    }
-                });
-
+                    });
+                }
                 // Apply visual settings
-                toggleTheme();
+                applyThemeFromStorage();
                 applyThemeColor(elements.themeColor.value);
                 fontSizeValue.textContent = elements.fontSize.value + 'px';
                 document.body.style.fontSize = elements.fontSize.value + 'px';

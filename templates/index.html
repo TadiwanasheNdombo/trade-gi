@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 </head>
+    <script src="/static/theme.js"></script>
 <body>
     <div class="container">
         <!-- Sidebar Navigation -->
@@ -43,7 +45,7 @@
                     <i class="fas fa-chart-bar nav-icon"></i>
                     <span class="nav-text">Analytics</span>
                 </div>
-                <div class="nav-item" data-page="settings">
+                <div class="nav-item" onclick="window.location.href='/settings'" style="color:white; cursor:pointer;">
                     <i class="fas fa-cog nav-icon"></i>
                     <span class="nav-text">Settings</span>
                 </div>

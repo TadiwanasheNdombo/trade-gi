@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener('change', (e) => {
             const isDarkMode = e.target.checked;
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+
             document.documentElement.classList.toggle('dark-theme', isDarkMode);
         });
     }
