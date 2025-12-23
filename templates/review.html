@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Extracted Data | Ecobank Zimbabwe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="upload-container">
+    <div class="upload-header">
+        <h1><i class="fas fa-file-search"></i> Review Extracted Data</h1>
+        <p class="subtitle">Please confirm the extracted information before saving.</p>
+    </div>
+    <form method="post" action="/confirm-review">
+        <div class="agreements-container">
+            <table class="agreements-table">
+                <tbody>
+                    {% for key, value in extracted.items() %}
+                    <tr>
+                        <th>{{ key.replace('_', ' ') }}</th>
+                        <td><input type="text" name="{{ key }}" value="{{ value }}" style="width:100%"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="upload-actions" style="margin-top:2rem;">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-save"></i> Confirm & Save
+            </button>
+            <button class="btn btn-secondary" type="button" onclick="window.location.href='/upload'">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

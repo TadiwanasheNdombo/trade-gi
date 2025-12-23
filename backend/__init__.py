@@ -24,20 +24,13 @@ def create_app():
     # --- Service Initializations ---
     # Initialize Firebase Admin SDK
     try:
-        gcp_service_account_str = os.environ.get('GCP_SERVICE_ACCOUNT')
-        if not gcp_service_account_str:
-            raise ValueError("GCP_SERVICE_ACCOUNT environment variable not set or empty.")
-
-        # The service account can be a path to a file or a JSON string
-        if os.path.isfile(gcp_service_account_str):
-             cred = credentials.Certificate(gcp_service_account_str)
-        else:
-            gcp_service_account_info = json.loads(gcp_service_account_str)
-            cred = credentials.Certificate(gcp_service_account_info)
-
+        # Always use the local service_account.json file
+        service_account_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../service_account.json'))
+        if not os.path.isfile(service_account_path):
+            raise FileNotFoundError(f"Service account file not found at {service_account_path}")
+        cred = credentials.Certificate(service_account_path)
         if not firebase_admin._apps:
             firebase_admin.initialize_app(cred)
-
         app.db = firestore.client()
         print("Firebase initialized successfully.", file=sys.stdout)
     except Exception as e:

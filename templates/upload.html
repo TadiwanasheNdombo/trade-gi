@@ -10,6 +10,20 @@
 </head>
 <body>
 <div class="upload-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger" style="margin-bottom:1rem;">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% if error %}
+            <div class="alert alert-danger" style="margin-bottom:1rem;">
+                {{ error }}
+            </div>
+        {% endif %}
     <!-- Header -->
     <div class="upload-header">
         <h1><i class="fas fa-file-upload"></i> Upload New Trade Agreement</h1>
@@ -68,19 +82,6 @@
     </form>
 
     <!-- Recent Uploads (If any) -->
-    <div class="recent-uploads">
-        <h4><i class="fas fa-history"></i> Recent Uploads</h4>
-        <div class="recent-list">
-            <div class="recent-item">
-                <i class="fas fa-file-pdf"></i>
-                <div class="recent-info">
-                    <span class="filename">Cangrow_Trading_Approval.pdf</span>
-                    <span class="status approved">Processed</span>
-                </div>
-                <span class="time">2 hours ago</span>
-            </div>
-        </div>
-    </div>
 
     <!-- Processing Status (Initially Hidden) -->
     <div class="processing-status" id="processingStatus" style="display: none;">
