@@ -119,7 +119,8 @@ def trigger_reminders():
     # Simple security check
     auth_token = request.headers.get('X-Auth-Token') or request.args.get('token')
     expected_token = os.environ.get('ADMIN_AUTH_TOKEN')
-    
+    print(f"Expected token: {expected_token!r}")
+    print(f"Received token: {auth_token!r}")
     if not expected_token or auth_token != expected_token:
         return {"error": "Unauthorized access"}, 401
 

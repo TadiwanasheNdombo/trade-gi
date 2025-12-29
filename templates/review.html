@@ -24,6 +24,12 @@
                         <td><input type="text" name="{{ key }}" value="{{ value }}" style="width:100%"></td>
                     </tr>
                     {% endfor %}
+                    <tr>
+                        <th>Client Email</th>
+                        <td>
+                            <input type="email" name="Client_Email" value="{{ extracted.get('Client_Email', '') }}" style="width:100%" required>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
