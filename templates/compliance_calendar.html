@@ -772,6 +772,12 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
+                                <!-- No user info to remove; ensure only logo and nav/filter sections remain. -->
+                <div class="logo-container" style="margin-bottom: 2rem;">
+                    <div class="logo" style="height:64px; width:100%; display:flex; align-items:center; justify-content:center;">
+                        <img src="/static/images/ecologo.png" alt="Ecobank Zimbabwe Logo" class="logo-image" style="width:400; height:200%; object-fit:cover;" />
+                    </div>
+                </div>
                 <!-- Upcoming Tasks -->
                 <div class="sidebar-section">
                     <h3><i class="fas fa-exclamation-circle"></i> Upcoming Deadlines</h3>
@@ -779,7 +785,6 @@
                         <!-- Tasks will be populated by JavaScript -->
                     </div>
                 </div>
-
                 <!-- Filters -->
                 <div class="sidebar-section">
                     <h3><i class="fas fa-filter"></i> Filter by Regulation</h3>
@@ -792,7 +797,6 @@
                         <button class="filter-btn" onclick="filterTasks('iso')">ISO 27001</button>
                     </div>
                 </div>
-
                 <!-- Priority Filter -->
                 <div class="sidebar-section">
                     <h3><i class="fas fa-flag"></i> Filter by Priority</h3>
@@ -803,7 +807,6 @@
                         <button class="filter-btn low" onclick="filterPriority('low')">Low</button>
                     </div>
                 </div>
-
                 <!-- Add New Task -->
                 <button class="add-task-btn" onclick="openTaskModal()">
                     <i class="fas fa-plus"></i> Add Compliance Task
